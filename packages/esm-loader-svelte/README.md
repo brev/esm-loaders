@@ -148,17 +148,21 @@ loaders to your chain:
   Add wanted file extensions to relative imports which are missing them,
   allowing Node.js to find the files on the filesystem (good for
   extensionless `.ts` imports).
+- [esm-loader-mock-exports][esm-loader-mock-exports]: For mocking and stubbing
+  the exports of any imported ESModules, great for testing.
 
 # License
 
 [MIT][mit-license]
 
-[esm-loader-css]: https://github.com/brev/esm-loader-css
-[esm-loader-import-alias]: https://github.com/brev/esm-loader-import-alias
-[esm-loader-import-meta-custom]: https://github.com/brev/esm-loader-import-meta-custom
-[esm-loader-import-relative-add-extension]: https://github.com/brev/esm-loader-import-relative-add-extension
-[esm-loader-json]: https://github.com/brev/esm-loader-json
-[esm-loader-typescript]: https://github.com/brev/esm-loader-typescript
+[esm-loader-css]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-css#readme
+[esm-loader-import-alias]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme
+[esm-loader-import-meta-custom]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme
+[esm-loader-import-relative-add-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-add-extension#readme
+[esm-loader-json]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-json#readme
+[esm-loader-mock-exports]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-mock-exports#readme
+[esm-loader-svelte]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-svelte#readme
+[esm-loader-typescript]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-typescript#readme
 [mit-license]: https://mit-license.org/
 [node-esm-loader]: https://github.com/sebamarynissen/node-esm-loader#readme
 [node-loaders]: https://nodejs.org/api/esm.html#loaders
