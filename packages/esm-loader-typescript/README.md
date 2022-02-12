@@ -36,8 +36,7 @@ NODE_OPTIONS="--experimental-loader esm-loader-typescript" node index.ts
 ## Chainable
 
 This loader can be configured, and chained with other loaders, using
-[node-esm-loader][node-esm-loader]. This should be your only loader handling
-Typescript files.
+[node-esm-loader][node-esm-loader].
 
 ```sh
 npm install --save-dev node-esm-loader
@@ -83,7 +82,8 @@ export default {
 
 [MIT][mit-license]
 
-[esm-loader-import-relative-add-extension]: https://github.com/brev/esm-loader-import-relative-add-extension
+[esm-loader-import-relative-add-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-add-extension#readme
 [mit-license]: https://mit-license.org/
 [node-esm-loader]: https://github.com/sebamarynissen/node-esm-loader#readme
 [node-loaders]: https://nodejs.org/api/esm.html#loaders
+

@@ -42,8 +42,7 @@ NODE_OPTIONS="--experimental-loader esm-loader-css" node index.js
 ## Chainable
 
 This loader can be configured, and chained with other loaders, using
-[node-esm-loader][node-esm-loader]. This should be your only loader handling
-stylesheet files.
+[node-esm-loader][node-esm-loader].
 
 ```sh
 npm install --save-dev node-esm-loader
