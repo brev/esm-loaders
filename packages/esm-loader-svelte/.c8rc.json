@@ -1,0 +1,6 @@
+{
+  "all": true,
+  "extension": [".js", ".cjs", ".ts", ".svelte"],
+  "reporter": ["text", "html"],
+  "src": "src/"
+}

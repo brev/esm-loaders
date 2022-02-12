@@ -1,0 +1,11 @@
+import * as assert from 'uvu/assert'
+import stylesheet from './index.css'
+import { suite } from 'uvu'
+
+const test = suite('esm-loader-css')
+
+test('loader', () => {
+  assert.is(stylesheet, 'body {\n  color: blue;\n}\n')
+})
+
+test.run()

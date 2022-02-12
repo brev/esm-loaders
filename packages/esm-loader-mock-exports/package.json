@@ -1,0 +1,71 @@
+{
+  "name": "esm-loader-mock-exports",
+  "version": "1.0.0",
+  "description": "Chainable ESModule Loader for mocking module exports",
+  "homepage": "https://github.com/brev/esm-loader-mock-exports#readme",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "author": {
+    "name": "Brev Patterson",
+    "url": "https://github.com/brev"
+  },
+  "bugs": {
+    "url": "https://github.com/brev/esm-loader-mock-exports/issues"
+  },
+  "dependencies": {
+    "astring": "^1.8.1",
+    "create-esm-loader": "^0.1.1",
+    "esquery": "^1.4.0",
+    "estree-walker": "^3.0.1",
+    "is-valid-var-name": "^1.0.2",
+    "klona": "^2.0.5",
+    "meriyah": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.17",
+    "@typescript-eslint/eslint-plugin": "^5.11.0",
+    "@typescript-eslint/parser": "^5.11.0",
+    "c8": "^7.11.0",
+    "eslint": "^8.6.0",
+    "eslint-config-prettier": "^8.3.0",
+    "node-esm-loader": "^0.0.1",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.5.1",
+    "rimraf": "^3.0.2",
+    "tsc-watch": "^4.6.0",
+    "typescript": "^4.5.4",
+    "typescript-cp": "^0.1.5",
+    "uvu": "^0.5.3"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "keywords": [
+    "esm",
+    "esmodule",
+    "loader",
+    "import",
+    "chainable",
+    "mock",
+    "module",
+    "exports"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brev/esm-loader-mock-exports.git"
+  },
+  "scripts": {
+    "bin:eslint": "eslint --ignore-path .gitignore .",
+    "bin:prettier": "prettier --ignore-path .gitignore .",
+    "bin:uvu": "NODE_OPTIONS=\"--experimental-loader node-esm-loader\" uvu test .test.js",
+    "build": "tsc && tscp",
+    "build:watch": "tsc-watch --onSuccess tscp",
+    "clean": "rimraf coverage/ dist/",
+    "format": "run-s 'bin:prettier -- --write'",
+    "lint": "run-s 'bin:prettier -- --check' bin:eslint",
+    "test": "run-s build bin:uvu",
+    "test:cover": "c8 run-s test"
+  }
+}

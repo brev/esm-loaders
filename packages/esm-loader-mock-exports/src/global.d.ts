@@ -1,0 +1,6 @@
+declare module 'create-esm-loader'
+declare module 'es6-template-strings'
+declare module 'esquery'
+declare module 'estree-modules'
+declare module 'is-valid-var-name'
+declare module 'nanoid-dictionary'
