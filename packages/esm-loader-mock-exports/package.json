@@ -1,8 +1,8 @@
 {
   "name": "esm-loader-mock-exports",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Chainable ESModule Loader for mocking module exports",
-  "homepage": "https://github.com/brev/esm-loader-mock-exports#readme",
+  "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-mock-exports#readme",
   "license": "MIT",
   "main": "./dist/index.js",
   "type": "module",
@@ -12,7 +12,7 @@
     "url": "https://github.com/brev"
   },
   "bugs": {
-    "url": "https://github.com/brev/esm-loader-mock-exports/issues"
+    "url": "https://github.com/brev/esm-loaders/issues"
   },
   "dependencies": {
     "astring": "^1.8.1",
@@ -54,7 +54,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/brev/esm-loader-mock-exports.git"
+    "url": "https://github.com/brev/esm-loaders.git",
+    "directory": "packages/esm-loader-mock-exports"
   },
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",

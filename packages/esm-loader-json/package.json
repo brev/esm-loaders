@@ -1,8 +1,8 @@
 {
   "name": "esm-loader-json",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Chainable ESModule Loader for importing JSON files as modules",
-  "homepage": "https://github.com/brev/esm-loader-json#readme",
+  "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-json#readme",
   "license": "MIT",
   "main": "./dist/index.js",
   "type": "module",
@@ -12,7 +12,7 @@
     "url": "https://github.com/brev"
   },
   "bugs": {
-    "url": "https://github.com/brev/esm-loader-json/issues"
+    "url": "https://github.com/brev/esm-loaders/issues"
   },
   "dependencies": {
     "create-esm-loader": "^0.1.1",
@@ -45,7 +45,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/brev/esm-loader-json.git"
+    "url": "https://github.com/brev/esm-loaders.git",
+    "directory": "packages/esm-loader-json"
   },
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",

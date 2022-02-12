@@ -1,8 +1,8 @@
 {
   "name": "esm-loader-import-alias",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Chainable ESModule Loader for import path aliases",
-  "homepage": "https://github.com/brev/esm-loader-import-alias#readme",
+  "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme",
   "license": "MIT",
   "main": "./dist/index.js",
   "type": "module",
@@ -12,7 +12,7 @@
     "url": "https://github.com/brev"
   },
   "bugs": {
-    "url": "https://github.com/brev/esm-loader-import-alias/issues"
+    "url": "https://github.com/brev/esm-loaders/issues"
   },
   "dependencies": {
     "create-esm-loader": "^0.1.1",
@@ -46,7 +46,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/brev/esm-loader-import-alias.git"
+    "url": "https://github.com/brev/esm-loaders.git",
+    "directory": "packages/esm-loader-import-alias"
   },
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",

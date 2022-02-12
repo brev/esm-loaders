@@ -1,8 +1,8 @@
 {
   "name": "esm-loader-import-meta-custom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Chainable ESModule Loader to stub custom import.meta.* properties",
-  "homepage": "https://github.com/brev/esm-loader-import-meta-custom#readme",
+  "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme",
   "license": "MIT",
   "main": "./dist/index.js",
   "type": "module",
@@ -12,7 +12,7 @@
     "url": "https://github.com/brev"
   },
   "bugs": {
-    "url": "https://github.com/brev/esm-loader-import-meta-custom/issues"
+    "url": "https://github.com/brev/esm-loaders/issues"
   },
   "dependencies": {
     "create-esm-loader": "^0.1.1"
@@ -45,7 +45,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/brev/esm-loader-import-meta-custom.git"
+    "url": "https://github.com/brev/esm-loaders.git",
+    "directory": "packages/esm-loader-import-meta-custom"
   },
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",

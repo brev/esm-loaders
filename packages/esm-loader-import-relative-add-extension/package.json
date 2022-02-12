@@ -1,8 +1,8 @@
 {
   "name": "esm-loader-import-relative-add-extension",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chainable ESModule Loader to add missing file extensions to relative imports",
-  "homepage": "",
+  "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-add-extension#readme",
   "license": "MIT",
   "main": "./dist/index.js",
   "type": "module",
@@ -12,7 +12,7 @@
     "url": "https://github.com/brev"
   },
   "bugs": {
-    "url": "https://github.com/brev/esm-loader-import-relative-add-extension#readme"
+    "url": "https://github.com/brev/esm-loaders/issues"
   },
   "dependencies": {
     "create-esm-loader": "^0.1.1"
@@ -46,7 +46,8 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/brev/esm-loader-import-relative-add-extension.git"
+    "url": "https://github.com/brev/esm-loaders.git",
+    "directory": "packages/esm-loader-import-relative-add-extension"
   },
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",

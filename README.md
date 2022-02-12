@@ -1,11 +1,9 @@
-# Monorepo for ESModule Loaders
+# ESModule Loaders Monorepo
 
 ## Dependencies
 
 - git
-- node
-- npm
-- pnpm
+- node + npm
 
 ## Install
 
