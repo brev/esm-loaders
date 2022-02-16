@@ -339,8 +339,9 @@ export default {
         node.specifiers = reExport.specifiers
       }
 
-      // x5. Hoist and rewrite bulk 'export {} from ...' style
-      //  'export * from ...' style is NOT supported! Not sure how to do this.
+      // x5. Hoist and rewrite bulk 'export * from ...' style
+      //    'export * from ...' style is NOT supported!
+      //    Not sure how to accomplish this yet.
       // if (node.type === 'ExportAllDeclaration') {}
     }
 
@@ -353,11 +354,14 @@ export default {
       enter(node, parent) {
         if (exports.includes(node)) this.skip()
         if (
-          node.type === 'Identifier' &&
           renames.has(node.name) &&
+          node.type === 'Identifier' &&
           !(parent.type === 'MemberExpression' && parent.property === node)
-        )
-          node.name = renames.get(node.name)
+        ) {
+          const original = klona(node)
+          node.name = renames.get(node.name) // rename
+          if (parent.type === 'ImportSpecifier') parent.imported = original
+        }
       },
     })
 

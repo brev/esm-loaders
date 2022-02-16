@@ -7,9 +7,9 @@ be used to mock the rest of its exports. This only works for
 ESModules (`import`), and does not work for CommonJS (`require`) modules.
 
 This loader should be able to mock all the
-[different forms of exports][export-forms], except for `export * ...`, which
-is not supported. You may be able to mock a parent module at a higher level
-to accomplish the same thing.
+[different forms of exports][export-forms], except for `export * from ...`,
+which is not yet supported. You may be able to mock a parent module at a higher
+level to accomplish the same thing.
 
 **Warning!** This uses experimental Node.js features and flags, whose API will
 likely change. This may be helpful for development and testing, but should not

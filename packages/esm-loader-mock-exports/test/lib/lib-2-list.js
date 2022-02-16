@@ -1,3 +1,5 @@
+import x213_default, { x213_named } from './lib-2-list-extra.js'
+
 // x2. List Export
 
 // x2.1. Name
@@ -15,6 +17,9 @@ const x212_const = 'x212_const'
 let x212_let = 'x212_let'
 var x212_var = 'x212_var'
 export { x212_const, x212_let, x212_var }
+
+// x2.1.3. Import-Export
+export { x213_default, x213_named }
 
 // x2.2. Rename
 

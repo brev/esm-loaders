@@ -1,5 +1,11 @@
 import * as assert from 'uvu/assert'
-import { get_x211, get_x212, get_x221, get_x222 } from './app/app-2-list.js'
+import {
+  get_x211,
+  get_x212,
+  get_x213,
+  get_x221,
+  get_x222,
+} from './app/app-2-list.js'
 import { _MOCK } from './lib/lib-2-list.js'
 import { suite } from 'uvu'
 
@@ -29,6 +35,17 @@ test('x212', () => {
 
   _MOCK.CLEAR()
   assert.is(get_x212(), 'x212_const x212_let x212_var')
+})
+
+test('x213', () => {
+  assert.is(get_x213(), 'x213_default x213_named')
+
+  _MOCK('x213_default', 'hello')
+  _MOCK('x213_named', 'world')
+  assert.is(get_x213(), 'hello world')
+
+  _MOCK.CLEAR()
+  assert.is(get_x213(), 'x213_default x213_named')
 })
 
 // x2.2.

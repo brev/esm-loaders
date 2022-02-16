@@ -5,6 +5,8 @@ import {
   x212_const,
   x212_let,
   x212_var,
+  x213_default,
+  x213_named,
   x221_const,
   x221_let,
   x221_var,
@@ -17,6 +19,7 @@ import {
 
 export const get_x211 = () => `${x211_const} ${x211_let} ${x211_var}`
 export const get_x212 = () => `${x212_const} ${x212_let} ${x212_var}`
+export const get_x213 = () => `${x213_default} ${x213_named}`
 
 // x2.2.
 
