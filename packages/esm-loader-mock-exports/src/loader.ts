@@ -350,11 +350,14 @@ export default {
 
     // rename all old non-export var names to their new mocked cached names
     walk(ast, {
-      enter(node) {
+      enter(node, parent) {
         if (exports.includes(node)) this.skip()
-        if (node.type === 'Identifier' && renames.has(node.name)) {
+        if (
+          node.type === 'Identifier' &&
+          renames.has(node.name) &&
+          !(parent.type === 'MemberExpression' && parent.property === node)
+        )
           node.name = renames.get(node.name)
-        }
       },
     })
 
