@@ -1,4 +1,4 @@
-// x4.3.3. class
+// x4.3.3. function*
 export default function* x433() {
   let count = 1
   while (true) {

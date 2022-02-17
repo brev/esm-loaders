@@ -13,6 +13,7 @@ import { _MOCK as _MOCK_x423 } from './lib/lib-4-default-2-3.js'
 import { _MOCK as _MOCK_x431 } from './lib/lib-4-default-3-1.js'
 import { _MOCK as _MOCK_x432 } from './lib/lib-4-default-3-2.js'
 import { _MOCK as _MOCK_x433 } from './lib/lib-4-default-3-3.js'
+import { _MOCK as _MOCK_x434 } from './lib/lib-4-default-3-4.js'
 
 import { _MOCK as _MOCK_x441 } from './lib/lib-4-default-4-1.js'
 import { _MOCK as _MOCK_x442 } from './lib/lib-4-default-4-2.js'
@@ -28,6 +29,7 @@ import {
   get_x431,
   get_x432,
   get_x433,
+  get_x434,
   get_x441,
   get_x442,
 } from './app/app-4-default.js'
@@ -164,6 +166,26 @@ test('x433', () => {
 
   _MOCK_x433.CLEAR()
   assert.is(get_x433(), 'x433 x433x433')
+})
+
+test('x434', () => {
+  assert.is(get_x434(), 'x434 x434_augment')
+
+  _MOCK_x434(
+    'default',
+    class {
+      method() {
+        return 'hello'
+      }
+      augment() {
+        return 'world'
+      }
+    }
+  )
+  assert.is(get_x434(), 'hello world')
+
+  _MOCK_x434.CLEAR()
+  assert.is(get_x434(), 'x434 x434_augment')
 })
 
 // x4.4.

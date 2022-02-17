@@ -10,6 +10,7 @@ import x423 from '../lib/lib-4-default-2-3.js'
 import x431 from '../lib/lib-4-default-3-1.js'
 import x432 from '../lib/lib-4-default-3-2.js'
 import x433 from '../lib/lib-4-default-3-3.js'
+import x434 from '../lib/lib-4-default-3-4.js'
 
 import x441 from '../lib/lib-4-default-4-1.js'
 import x442a, { x442b } from '../lib/lib-4-default-4-2.js'
@@ -38,6 +39,7 @@ export const get_x433 = () => {
   const gen = x433()
   return `${gen.next().value} ${gen.next().value}`
 }
+export const get_x434 = () => `${new x434().method()} ${new x434().augment()}`
 
 // x4.4.
 

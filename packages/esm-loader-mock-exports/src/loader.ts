@@ -227,6 +227,39 @@ export default {
         }
       }
 
+      // x4.[1-3]. Hoist and rewrite default 'export default ...' style
+      if (node.type === 'ExportDefaultDeclaration') {
+        let name = `__MOCK_default_${node.declaration.name}` // .type=Identifier
+        if (
+          node.declaration.type === 'ClassDeclaration' ||
+          node.declaration.type === 'FunctionDeclaration'
+        ) {
+          const id = node.declaration.id ? node.declaration.id.name : 'anon'
+          name = `__MOCK_default_${id}`
+          renames.set(id, name)
+        }
+        // alias
+        const alias = parseDefaultSet(name) as ESTree.ExpressionStatement
+        nodeIndex = insert(nodeIndex, alias)
+        // hoist
+        const hoist = parseCacheSet(name, node.declaration)
+        nodeIndex = insert(nodeIndex, hoist)
+        // redeclare
+        const hoistExp = hoist.expression as ESTree.AssignmentExpression
+        const redeclare = parseBlock(
+          `let ${name} = null`
+        ) as ESTree.VariableDeclaration
+        redeclare.declarations[0].init = hoistExp.left
+        nodeIndex = insert(nodeIndex, redeclare)
+        // rewrite
+        const reExport = parseBlock(
+          `export { ${name} as default }`
+        ) as ESTree.ExportNamedDeclaration
+        node.type = 'ExportNamedDeclaration'
+        node.declaration = null
+        node.specifiers = reExport.specifiers
+      }
+
       // x5. Hoist and rewrite aggregate 'export {} from ...' style
       if (
         node.type === 'ExportNamedDeclaration' &&
@@ -316,38 +349,6 @@ export default {
           specifierIndex--
           if (!node.specifiers.length) nodeIndex = remove(nodeIndex)
         }
-      }
-
-      // x4.[1-3]. Hoist and rewrite default 'export default ...' style
-      if (node.type === 'ExportDefaultDeclaration') {
-        let name = `__MOCK_default_${node.declaration.name}` // .type=Identifier
-        if (
-          node.declaration.type === 'ClassDeclaration' ||
-          node.declaration.type === 'FunctionDeclaration'
-        ) {
-          const id = node.declaration.id ? node.declaration.id.name : 'anon'
-          name = `__MOCK_default_${id}`
-        }
-        // alias
-        const alias = parseDefaultSet(name) as ESTree.ExpressionStatement
-        nodeIndex = insert(nodeIndex, alias)
-        // hoist
-        const hoist = parseCacheSet(name, node.declaration)
-        nodeIndex = insert(nodeIndex, hoist)
-        // redeclare
-        const hoistExp = hoist.expression as ESTree.AssignmentExpression
-        const redeclare = parseBlock(
-          `let ${name} = null`
-        ) as ESTree.VariableDeclaration
-        redeclare.declarations[0].init = hoistExp.left
-        nodeIndex = insert(nodeIndex, redeclare)
-        // rewrite
-        const reExport = parseBlock(
-          `export { ${name} as default }`
-        ) as ESTree.ExportNamedDeclaration
-        node.type = 'ExportNamedDeclaration'
-        node.declaration = null
-        node.specifiers = reExport.specifiers
       }
 
       // x5. Hoist and rewrite bulk 'export * from ...' style
