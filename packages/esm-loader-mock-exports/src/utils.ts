@@ -5,7 +5,7 @@ import { resolve } from 'path'
 
 // settings
 
-export const parseOpts = { module: true }
+export const parseOpts = { module: true, next: true, webcompat: true }
 export const stubPath = './stubs/'
 
 // utils

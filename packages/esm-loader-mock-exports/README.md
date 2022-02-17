@@ -6,11 +6,6 @@ This loader will add a `_MOCK` named export to each loaded ESModule, which can
 be used to mock the rest of its exports. This only works for
 ESModules (`import`), and does not work for CommonJS (`require`) modules.
 
-This loader should be able to mock all the
-[different forms of exports][export-forms], except for `export * from ...`,
-which is not yet supported. You may be able to mock a parent module at a higher
-level to accomplish the same thing.
-
 **Warning!** This uses experimental Node.js features and flags, whose API will
 likely change. This may be helpful for development and testing, but should not
 be used in production.
@@ -141,6 +136,29 @@ export default {
   ],
 }
 ```
+
+# Unsupported
+
+This loader CANNOT handle the following situations, and will skip them:
+
+- Bulk exports from other modules (You may be able to mock a parent module at a
+  higher level to accomplish the same thing):
+
+  ```js
+  export * from ...
+  ```
+
+- Class with uninitialized private field declarations:
+
+  ```js
+  class BlobDataItem {
+    #path
+
+    constructor(options) {
+      this.#path = options.path
+    }
+  }
+  ```
 
 # Security
 

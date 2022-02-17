@@ -54,8 +54,6 @@ export default {
     if (includes && !includes.some((rx: RegExp) => rx.test(url)))
       return undefined
 
-    if (debug) console.log(`[${NAME}] transform: ${url}`)
-
     const ast = parse(String(source), parseOpts)
     const initial = ast.body.length
     const insert = (where: number, what: ESTree.Statement) => {
@@ -69,7 +67,20 @@ export default {
     const renames: Map<string, string> = new Map()
     let exports = getExports(ast)
 
-    if (!exports) return undefined
+    if (
+      !exports ||
+      esquery(
+        ast,
+        [
+          'ClassDeclaration',
+          'ClassBody :not(PropertyDefinition[attr])',
+          'PrivateIdentifier',
+        ].join(' > ')
+      ).length
+    )
+      return undefined
+
+    if (debug) console.log(`[${NAME}] transform: ${url}`)
 
     // hoist and rewrite exports with mocking
     for (let nodeIndex = 0; nodeIndex < ast.body.length; nodeIndex++) {
