@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-mock-exports",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Chainable ESModule Loader for mocking module exports",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-mock-exports#readme",
   "license": "MIT",

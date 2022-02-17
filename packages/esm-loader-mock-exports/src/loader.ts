@@ -1,6 +1,7 @@
+import type { ESTree } from 'meriyah'
+
 import { dirname } from 'path'
 import esquery from 'esquery'
-import { ESTree, parse } from 'meriyah'
 import { fileURLToPath } from 'url'
 import { generate } from 'astring'
 import {
@@ -13,6 +14,7 @@ import {
 } from './utils.js'
 import isVarName from 'is-valid-var-name'
 import { klona } from 'klona/json'
+import { parse } from 'meriyah'
 import { walk } from 'estree-walker'
 
 declare global {
