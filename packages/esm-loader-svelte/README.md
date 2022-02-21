@@ -153,7 +153,7 @@ loaders to your chain:
 
 # Caveats
 
-* By current Svelte design, some lifecycle events do not run on server, and 
+- By current Svelte design, some lifecycle events do not run on server, and
   therefore are not testable: `onMount`, `beforeUpdate`, `afterUpdate`.
   More context: https://github.com/sveltejs/svelte/issues/7267.
 
