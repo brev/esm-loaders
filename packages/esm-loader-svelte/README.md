@@ -149,13 +149,49 @@ loaders to your chain:
   allowing Node.js to find the files on the filesystem (good for
   extensionless `.ts` imports).
 - [esm-loader-mock-exports][esm-loader-mock-exports]: For mocking and stubbing
-  the exports of any imported ESModules, great for testing.
+  the exports of any imported ESModules, great for testing. This is useful
+  to mock contextual stores before components are rendered.
 
 # Caveats
 
-- By current Svelte design, some lifecycle events do not run on server, and
-  therefore are not testable: `onMount`, `beforeUpdate`, `afterUpdate`.
-  More context: https://github.com/sveltejs/svelte/issues/7267.
+## Lifecycle Events
+
+By current Svelte design, some lifecycle events do not run on the server:
+`onMount`, `beforeUpdate`, `afterUpdate`. More context is here:
+https://github.com/sveltejs/svelte/issues/7267.
+
+You can still test these lifecycle events by using a slightly verbose
+workaround:
+
+```html
+<!-- Component.svelte -->
+<script>
+  import { onMount } from 'svelte'
+
+  let name = 'Alice'
+
+  export const onMountHandle = () => {
+    name = 'Bob'
+  }
+
+  onMount(onMountHandle)
+</script>
+
+<div>
+  <h1>{name}</h1>
+</div>
+```
+
+```js
+// Component.test.js
+test('onMount', async () => {
+  const { component, findByText, getByText } = render(Component)
+  assert.ok(getByText('Alice'))
+
+  component.onMountHandle()
+  assert.ok(await findByText('Bob'))
+})
+```
 
 # License
 
