@@ -151,6 +151,12 @@ loaders to your chain:
 - [esm-loader-mock-exports][esm-loader-mock-exports]: For mocking and stubbing
   the exports of any imported ESModules, great for testing.
 
+# Caveats
+
+* By current Svelte design, some lifecycle events do not run on server, and 
+  therefore are not testable: `onMount`, `beforeUpdate`, `afterUpdate`.
+  More context: https://github.com/sveltejs/svelte/issues/7267.
+
 # License
 
 [MIT][mit-license]
