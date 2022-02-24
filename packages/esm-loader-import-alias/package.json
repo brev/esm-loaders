@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-import-alias",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chainable ESModule Loader for import path aliases",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme",
   "license": "MIT",
@@ -15,8 +15,10 @@
     "url": "https://github.com/brev/esm-loaders/issues"
   },
   "dependencies": {
+    "astring": "^1.8.1",
     "create-esm-loader": "^0.1.1",
-    "escape-string-regexp": "^5.0.0"
+    "esquery": "^1.4.0",
+    "meriyah": "^4.2.0"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",

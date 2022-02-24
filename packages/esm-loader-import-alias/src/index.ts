@@ -1,5 +1,9 @@
+import type { ESTree } from 'meriyah'
+
 import createLoader from 'create-esm-loader'
-import escape from 'escape-string-regexp'
+import esquery from 'esquery'
+import { generate } from 'astring'
+import { parse } from 'meriyah'
 
 type Options = {
   parentURL: string
@@ -9,44 +13,41 @@ type Options = {
 }
 
 const NAME = 'esm-loader-import-alias'
+const importTypes = [
+  'ImportDeclaration',
+  'ExportAllDeclaration',
+  'ExportNamedDeclaration',
+]
+const parseOpts = { module: true, next: true, webcompat: true }
 
 // create-esm-loader config
 
 const config = {
   transform: async (source: Buffer, options: Options) => {
     const { url, aliases } = options
-    let sourceStr = String(source)
+    const aliasKeys = Object.keys(aliases || {})
+    const sourceStr = String(source)
 
     if (
       !aliases ||
-      !Object.keys(aliases).some((before: string) => sourceStr.includes(before))
+      !aliasKeys.some((alias: string) => sourceStr.includes(alias))
     )
       return undefined
 
     if (options.debug) console.log(`[${NAME}] transform: ${url}`)
 
-    // @TODO use AST to be safer
-    for (const [before, after] of Object.entries(aliases)) {
-      const imports = [
-        ...[
-          ...sourceStr.matchAll(
-            new RegExp(`import .*['"\`](${escape(before)}).*?['"\`]`, 'g')
-          ),
-        ],
-        ...[
-          ...sourceStr.matchAll(
-            new RegExp(`export .*from.*['"\`](${escape(before)}).*?['"\`]`, 'g')
-          ),
-        ],
-      ]
-      imports.forEach((statement) => {
-        if (!sourceStr.includes(statement[0])) return
-        const reImport = statement[0].replace(statement[1], after)
-        sourceStr = sourceStr.replace(statement[0], reImport)
+    const ast = parse(sourceStr, parseOpts)
+    const imports = esquery(ast, `:matches(${importTypes.join(',')})`)
+    imports.forEach((importer: ESTree.ImportDeclaration) => {
+      const value = importer.source.value as string
+      aliasKeys.forEach((alias) => {
+        if (value.includes(alias))
+          importer.source.value = value.replace(alias, aliases[alias])
       })
-    }
+    })
 
-    return { source: sourceStr }
+    const newSource = generate(ast)
+    return { source: newSource }
   },
 }
 export default config
