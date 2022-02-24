@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-import-alias",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Chainable ESModule Loader for import path aliases",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme",
   "license": "MIT",

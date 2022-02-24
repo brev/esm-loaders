@@ -30,12 +30,12 @@ const config = {
       const imports = [
         ...[
           ...sourceStr.matchAll(
-            new RegExp(`import.*['"\`](${escape(before)}).*?['"\`]`, 'g')
+            new RegExp(`import .*['"\`](${escape(before)}).*?['"\`]`, 'g')
           ),
         ],
         ...[
           ...sourceStr.matchAll(
-            new RegExp(`export.*from.*['"\`](${escape(before)}).*?['"\`]`, 'g')
+            new RegExp(`export .*from.*['"\`](${escape(before)}).*?['"\`]`, 'g')
           ),
         ],
       ]
