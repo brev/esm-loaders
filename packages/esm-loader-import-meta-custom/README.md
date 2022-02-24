@@ -56,7 +56,13 @@ export default {
 NODE_OPTIONS="--experimental-loader node-esm-loader" node index.js
 ```
 
-### Option: Debug
+### Options
+
+#### Meta
+
+See example above.
+
+#### Debug
 
 ```js
 // .loaderrc.js

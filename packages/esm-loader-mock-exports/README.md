@@ -96,7 +96,9 @@ export default {
 NODE_OPTIONS="--experimental-loader node-esm-loader" node app.test.js
 ```
 
-### Option: Includes
+### Options
+
+#### Includes
 
 To only instrument mocks on certain specific modules, you can pass a list of
 regular expressions in an `includes` option. This can increase speed and
@@ -121,7 +123,7 @@ export default {
 }
 ```
 
-### Option: Debug
+#### Debug
 
 ```js
 // .loaderrc.js

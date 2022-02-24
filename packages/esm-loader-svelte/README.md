@@ -64,7 +64,9 @@ export default {
 NODE_OPTIONS="--experimental-loader node-esm-loader" node index.js
 ```
 
-### Option: Debug
+### Options
+
+#### Debug
 
 ```js
 // .loaderrc.js
@@ -80,7 +82,7 @@ export default {
 }
 ```
 
-### Option: Preprocess
+#### Preprocess
 
 Preprocessing options can be supplied, for usage with something like
 SvelteKit's [svelte-preprocess][svelte-preprocess].
@@ -110,7 +112,7 @@ export default {
 }
 ```
 
-### SvelteKit
+# SvelteKit
 
 If `options.preprocess` is NOT found in `.loaderrc.js`, then we will try to
 load a SvelteKit `svelte.config.js` file, and use the `preprocess` settings

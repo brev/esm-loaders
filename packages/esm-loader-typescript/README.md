@@ -22,11 +22,6 @@ console.log(words)
 // 'hello'
 ```
 
-## Config
-
-If a `tsconfig.json` file is found, it will be loaded and used. Otherwise, we
-provide a bare-bones default config which will be used instead.
-
 ## Standalone
 
 ```sh
@@ -53,7 +48,9 @@ export default {
 NODE_OPTIONS="--experimental-loader node-esm-loader" node index.ts
 ```
 
-### Option: Debug
+### Options
+
+#### Debug
 
 ```js
 // .loaderrc.js
@@ -69,7 +66,12 @@ export default {
 }
 ```
 
-## Related
+# Config
+
+If a `tsconfig.json` file is found, it will be loaded and used. Otherwise, we
+provide a bare-bones default config which will be used instead.
+
+# Related
 
 - [esm-loader-import-relative-add-extension][esm-loader-import-relative-add-extension]:
   Typescript usually generates `.js` files, so relative imports are suggested

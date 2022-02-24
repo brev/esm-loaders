@@ -60,7 +60,9 @@ export default {
 NODE_OPTIONS="--experimental-loader node-esm-loader" node index.js
 ```
 
-### Option: Debug
+### Options
+
+#### Debug
 
 ```js
 // .loaderrc.js

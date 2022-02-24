@@ -55,8 +55,6 @@ export default {
       loader: 'esm-loader-import-relative-add-extension',
       options: {
         extensions: {
-          // Any relative imports found in .ts files, which are missing a file
-          //  extension, will have the '.ts' extension added on-the-fly.
           '.ts': '.ts',
         },
       },
@@ -65,7 +63,35 @@ export default {
 }
 ```
 
-### Option: Debug
+### Options
+
+#### Extensions
+
+```js
+// .loaderrc.js
+export default {
+  loaders: [
+    {
+      loader: 'esm-loader-import-relative-add-extension',
+      options: {
+        extensions: {
+          // Any relative imports found in .js files, which are missing a file
+          //  extension, will have the '.js' extension added on-the-fly.
+          '.js': '.js',
+
+          // Any relative imports found in .ts or .svelte files, which are
+          //  missing a file extension, will have the '.ts' extension added
+          //  on-the-fly.
+          '.ts': '.ts',
+          '.svelte': '.ts',
+        },
+      },
+    },
+  ],
+}
+```
+
+#### Debug
 
 ```js
 // .loaderrc.js
@@ -85,7 +111,7 @@ export default {
 
 In your loader chain:
 
-- This loader should come after:
+- This loader should come **after**:
   - [esm-loader-import-alias][esm-loader-import-alias]
 
 # License
