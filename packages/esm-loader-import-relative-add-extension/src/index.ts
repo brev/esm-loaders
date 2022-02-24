@@ -24,10 +24,15 @@ const config = {
     const newExt = extensions[urlExt]
     let sourceStr = String(source)
     // @TODO use AST to be safer
-    const imports = [
-      ...[...sourceStr.matchAll(/import.*['"`](\.{1,2}\/[^.]+?)['"`]/g)],
-      ...[...sourceStr.matchAll(/export.*from.*['"`](\.{1,2}\/[^.]+?)['"`]/g)],
+    const relatives = [
+      ...[...sourceStr.matchAll(/import .*['"`](\.{0,2}\/.*)['"`]/g)],
+      ...[...sourceStr.matchAll(/export .*from.*['"`](\.{0,2}\/.*)['"`]/g)],
     ]
+    const imports = relatives.filter((statement) => {
+      const paths = statement[1].split('/')
+      return paths[paths.length - 1].split('.').length === 1
+    })
+
     if (!imports.length) return undefined
 
     if (options.debug) console.log(`[${NAME}] transform: ${url}`)
