@@ -40,10 +40,10 @@ const config = {
     const imports = esquery(ast, `:matches(${importTypes.join(',')})`)
     imports.forEach((importer: ESTree.ImportDeclaration) => {
       if (!(importer && importer.source && importer.source.value)) return
-      const value = importer.source.value as string
+      const specifier = importer.source.value as string
       aliasKeys.forEach((alias) => {
-        if (value.includes(alias))
-          importer.source.value = value.replace(alias, aliases[alias])
+        if (specifier.includes(alias))
+          importer.source.value = specifier.replace(alias, aliases[alias])
       })
     })
 

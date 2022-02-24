@@ -106,10 +106,13 @@ importers:
       '@types/node': ^17.0.21
       '@typescript-eslint/eslint-plugin': ^5.12.1
       '@typescript-eslint/parser': ^5.12.1
+      astring: ^1.8.1
       c8: ^7.11.0
       create-esm-loader: ^0.1.1
       eslint: ^8.9.0
       eslint-config-prettier: ^8.4.0
+      esquery: ^1.4.0
+      meriyah: ^4.2.0
       node-esm-loader: ^0.0.1
       npm-run-all: ^4.1.5
       prettier: ^2.5.1
@@ -117,7 +120,10 @@ importers:
       typescript: ^4.5.5
       uvu: ^0.5.3
     dependencies:
+      astring: 1.8.1
       create-esm-loader: 0.1.1
+      esquery: 1.4.0
+      meriyah: 4.2.0
     devDependencies:
       '@types/node': 17.0.21
       '@typescript-eslint/eslint-plugin': 5.12.1_aa3af6382115a42a71cc388b7b2c30b3
