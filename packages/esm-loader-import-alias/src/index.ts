@@ -39,6 +39,7 @@ const config = {
     const ast = parse(sourceStr, parseOpts)
     const imports = esquery(ast, `:matches(${importTypes.join(',')})`)
     imports.forEach((importer: ESTree.ImportDeclaration) => {
+      if (!(importer && importer.source && importer.source.value)) return
       const value = importer.source.value as string
       aliasKeys.forEach((alias) => {
         if (value.includes(alias))
