@@ -7,6 +7,7 @@ This is a Monorepo for my ESModule Loaders.
 ESModule Loaders are in the [`packages/`][packages] directory:
 
 - [esm-loader-css][esm-loader-css]
+- [esm-loader-images][esm-loader-images]
 - [esm-loader-import-alias][esm-loader-import-alias]
 - [esm-loader-import-meta-custom][esm-loader-import-meta-custom]
 - [esm-loader-import-relative-add-extension][esm-loader-import-relative-add-extension]
@@ -34,6 +35,7 @@ pnpm install
 [MIT][mit-license]
 
 [esm-loader-css]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-css#readme
+[esm-loader-images]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-images#readme
 [esm-loader-import-alias]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme
 [esm-loader-import-meta-custom]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme
 [esm-loader-import-relative-add-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-add-extension#readme
