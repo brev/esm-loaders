@@ -25,7 +25,7 @@
     "@typescript-eslint/eslint-plugin": "^5.12.1",
     "@typescript-eslint/parser": "^5.12.1",
     "c8": "^7.11.0",
-    "eslint": "^8.9.0",
+    "eslint": "^8.10.0",
     "eslint-config-prettier": "^8.4.0",
     "global-jsdom": "^8.4.0",
     "jsdom": "^19.0.0",
