@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-import-meta-custom",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Chainable ESModule Loader to stub custom import.meta.* properties",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme",
   "license": "MIT",
@@ -15,21 +15,21 @@
     "url": "https://github.com/brev/esm-loaders/issues"
   },
   "dependencies": {
-    "create-esm-loader": "^0.1.1"
+    "create-esm-loader": "^0.1.2",
+    "npm-run-all": "^4.1.5"
   },
   "devDependencies": {
-    "@types/node": "^17.0.21",
-    "@typescript-eslint/eslint-plugin": "^5.12.1",
-    "@typescript-eslint/parser": "^5.12.1",
-    "c8": "^7.11.0",
-    "eslint": "^8.10.0",
-    "eslint-config-prettier": "^8.4.0",
-    "node-esm-loader": "^0.0.1",
-    "npm-run-all": "^4.1.5",
-    "prettier": "^2.5.1",
+    "@types/node": "^18.7.14",
+    "@typescript-eslint/eslint-plugin": "^5.36.1",
+    "@typescript-eslint/parser": "^5.36.1",
+    "c8": "^7.12.0",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "node-esm-loader": "^0.0.3",
+    "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.5.5",
-    "uvu": "^0.5.3"
+    "typescript": "^4.8.2",
+    "uvu": "^0.5.6"
   },
   "files": [
     "dist/*"
@@ -53,10 +53,10 @@
     "bin:prettier": "prettier --ignore-path .gitignore .",
     "bin:uvu": "NODE_OPTIONS=\"--experimental-loader node-esm-loader\" uvu test .test.js",
     "build": "tsc",
-    "build:watch": "run-s 'build -- --watch'",
+    "build:watch": "run-s 'build --watch'",
     "clean": "rimraf coverage/ dist/",
-    "format": "run-s 'bin:prettier -- --write'",
-    "lint": "run-s 'bin:prettier -- --check' bin:eslint",
+    "format": "run-s 'bin:prettier --write'",
+    "lint": "run-s 'bin:prettier --check' bin:eslint",
     "test": "run-s build bin:uvu",
     "test:cover": "c8 run-s test"
   }
