@@ -1,3 +1,8 @@
+# This project is now obsolete!
+
+**Instead, you can find the same functionality, plus additional features, here:**
+[esm-loader-import-relative-extension][esm-loader-import-relative-extension]
+
 # esm-loader-import-relative-add-extension
 
 [Node.js ESModule Loader][node-loaders] for adding missing file extensions to
@@ -118,6 +123,7 @@ In your loader chain:
 
 [MIT][mit-license]
 
+[esm-loader-import-relative-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-extension#readme
 [esm-loader-import-alias]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme
 [mit-license]: https://mit-license.org/
 [node-esm-loader]: https://github.com/sebamarynissen/node-esm-loader#readme
