@@ -37,7 +37,7 @@ console.log(data) // { "name": "Vito" }
 ## Standalone
 
 ```sh
-NODE_OPTIONS="--experimental-loader esm-loader-json" node index.js
+NODE_OPTIONS="--loader esm-loader-json" node index.js
 ```
 
 ## Chainable
@@ -57,7 +57,7 @@ export default {
 ```
 
 ```sh
-NODE_OPTIONS="--experimental-loader node-esm-loader" node index.js
+NODE_OPTIONS="--loader node-esm-loader" node index.js
 ```
 
 ### Options

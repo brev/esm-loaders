@@ -41,7 +41,7 @@ import Component from './Component.svelte'
 ## Standalone
 
 ```sh
-NODE_OPTIONS="--experimental-loader esm-loader-svelte" node index.js
+NODE_OPTIONS="--loader esm-loader-svelte" node index.js
 ```
 
 ## Chainable
@@ -61,7 +61,7 @@ export default {
 ```
 
 ```sh
-NODE_OPTIONS="--experimental-loader node-esm-loader" node index.js
+NODE_OPTIONS="--loader node-esm-loader" node index.js
 ```
 
 ### Options
@@ -135,81 +135,24 @@ export default {
 }
 ```
 
-To complete your support of SvelteKit, you may want to add these additional
-loaders to your chain:
-
-- [esm-loader-typescript][esm-loader-typescript]: For loading `.ts` files.
-- [esm-loader-css][esm-loader-css]: For loading `.css` and stylesheet files.
-- [esm-loader-json][esm-loader-json]: For loading `.json` files. Especially
-  helpful for getting around json import assertions in `node>=17.1`.
-- [esm-loader-import-alias][esm-loader-import-alias]: For handling import path
-  aliases (`$app`, `$lib`, etc.)
-- [esm-loader-import-meta-custom][esm-loader-import-meta-custom]: For handling
-  custom `import.meta.*` properties.
-- [esm-loader-import-relative-add-extension][esm-loader-import-relative-add-extension]:
-  Add wanted file extensions to relative imports which are missing them,
-  allowing Node.js to find the files on the filesystem (good for
-  extensionless `.ts` imports).
-- [esm-loader-mock-exports][esm-loader-mock-exports]: For mocking and stubbing
-  the exports of any imported ESModules, great for testing. This is useful
-  to mock contextual stores before components are rendered.
+To further support loading SvelteKit, you may be interested in chaining
+[additional loaders][esm-loaders]. If you are testing a SvelteKit app,
+we suggest using [vitest][vitest] instead.
 
 # Caveats
 
-## Lifecycle Events
-
-By current Svelte design, some lifecycle events do not run on the server:
-`onMount`, `beforeUpdate`, `afterUpdate`. More context is here:
-https://github.com/sveltejs/svelte/issues/7267.
-
-You can still test these lifecycle events by using a slightly verbose
-workaround:
-
-```html
-<!-- Component.svelte -->
-<script>
-  import { onMount } from 'svelte'
-
-  let name = 'Alice'
-
-  export const onMountHandle = () => {
-    name = 'Bob'
-  }
-
-  onMount(onMountHandle)
-</script>
-
-<div>
-  <h1>{name}</h1>
-</div>
-```
-
-```js
-// Component.test.js
-test('onMount', async () => {
-  const { component, findByText, getByText } = render(Component)
-  assert.ok(getByText('Alice'))
-
-  component.onMountHandle()
-  assert.ok(await findByText('Bob'))
-})
-```
+Svelte does not run some lifecycle events on the server under Node.js:
+`onMount`, `beforeUpdate`, `afterUpdate`.
 
 # License
 
 [MIT][mit-license]
 
-[esm-loader-css]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-css#readme
-[esm-loader-import-alias]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme
-[esm-loader-import-meta-custom]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme
-[esm-loader-import-relative-add-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-add-extension#readme
-[esm-loader-json]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-json#readme
-[esm-loader-mock-exports]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-mock-exports#readme
-[esm-loader-svelte]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-svelte#readme
-[esm-loader-typescript]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-typescript#readme
+[esm-loaders]: https://github.com/brev/esm-loaders/tree/main#readme
 [mit-license]: https://mit-license.org/
 [node-esm-loader]: https://github.com/sebamarynissen/node-esm-loader#readme
 [node-loaders]: https://nodejs.org/api/esm.html#loaders
 [svelte]: https://svelte.dev/
 [svelte-preprocess]: https://github.com/sveltejs/svelte-preprocess
 [sveltekit]: https://kit.svelte.dev/
+[vitest]: https://vitest.dev/

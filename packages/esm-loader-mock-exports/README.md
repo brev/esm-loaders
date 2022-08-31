@@ -70,7 +70,7 @@ _MOCK('default', () => 'hello world')
 By default, all loaded modules will be instrumented with mocking abilities:
 
 ```sh
-NODE_OPTIONS="--experimental-loader esm-loader-mock-exports" node app.test.js
+NODE_OPTIONS="--loader esm-loader-mock-exports" node app.test.js
 ```
 
 ## Chainable
@@ -93,7 +93,7 @@ export default {
 ```
 
 ```sh
-NODE_OPTIONS="--experimental-loader node-esm-loader" node app.test.js
+NODE_OPTIONS="--loader node-esm-loader" node app.test.js
 ```
 
 ### Options

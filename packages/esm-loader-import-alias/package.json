@@ -54,7 +54,7 @@
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",
     "bin:prettier": "prettier --ignore-path .gitignore .",
-    "bin:uvu": "NODE_OPTIONS=\"--experimental-loader node-esm-loader\" uvu test .test.js",
+    "bin:uvu": "NODE_OPTIONS=\"--loader node-esm-loader\" uvu test .test.js",
     "build": "tsc",
     "build:watch": "run-s 'build --watch'",
     "clean": "rimraf coverage/ dist/",

@@ -25,7 +25,7 @@ console.log(words)
 ## Standalone
 
 ```sh
-NODE_OPTIONS="--experimental-loader esm-loader-typescript" node index.ts
+NODE_OPTIONS="--loader esm-loader-typescript" node index.ts
 ```
 
 ## Chainable
@@ -45,7 +45,7 @@ export default {
 ```
 
 ```sh
-NODE_OPTIONS="--experimental-loader node-esm-loader" node index.ts
+NODE_OPTIONS="--loader node-esm-loader" node index.ts
 ```
 
 ### Options
