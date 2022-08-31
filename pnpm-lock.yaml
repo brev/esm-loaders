@@ -169,6 +169,43 @@ importers:
       typescript: 4.8.2
       uvu: 0.5.6
 
+  packages/esm-loader-import-relative-extension:
+    specifiers:
+      '@types/node': ^18.7.14
+      '@typescript-eslint/eslint-plugin': ^5.36.1
+      '@typescript-eslint/parser': ^5.36.1
+      astring: ^1.8.3
+      c8: ^7.12.0
+      create-esm-loader: ^0.1.2
+      eslint: ^8.23.0
+      eslint-config-prettier: ^8.5.0
+      esquery: ^1.4.0
+      meriyah: ^4.3.0
+      node-esm-loader: ^0.0.3
+      npm-run-all: ^4.1.5
+      prettier: ^2.7.1
+      rimraf: ^3.0.2
+      typescript: ^4.8.2
+      uvu: ^0.5.6
+    dependencies:
+      astring: 1.8.3
+      create-esm-loader: 0.1.2
+      esquery: 1.4.0
+      meriyah: 4.3.0
+      npm-run-all: 4.1.5
+    devDependencies:
+      '@types/node': 18.7.14
+      '@typescript-eslint/eslint-plugin': 5.36.1_lbwfnm54o3pmr3ypeqp3btnera
+      '@typescript-eslint/parser': 5.36.1_yqf6kl63nyoq5megxukfnom5rm
+      c8: 7.12.0
+      eslint: 8.23.0
+      eslint-config-prettier: 8.5.0_eslint@8.23.0
+      node-esm-loader: 0.0.3
+      prettier: 2.7.1
+      rimraf: 3.0.2
+      typescript: 4.8.2
+      uvu: 0.5.6
+
   packages/esm-loader-json:
     specifiers:
       '@types/node': ^18.7.14
