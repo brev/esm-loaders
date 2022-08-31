@@ -10,7 +10,7 @@ ESModule Loaders are in the [`packages/`][packages] directory:
 - [esm-loader-images][esm-loader-images]
 - [esm-loader-import-alias][esm-loader-import-alias]
 - [esm-loader-import-meta-custom][esm-loader-import-meta-custom]
-- [esm-loader-import-relative-add-extension][esm-loader-import-relative-add-extension]
+- [esm-loader-import-relative-extension][esm-loader-import-relative-extension]
 - [esm-loader-json][esm-loader-json]
 - [esm-loader-mock-exports][esm-loader-mock-exports]
 - [esm-loader-svelte][esm-loader-svelte]
@@ -38,7 +38,7 @@ pnpm install
 [esm-loader-images]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-images#readme
 [esm-loader-import-alias]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme
 [esm-loader-import-meta-custom]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme
-[esm-loader-import-relative-add-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-add-extension#readme
+[esm-loader-import-relative-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-extension#readme
 [esm-loader-json]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-json#readme
 [esm-loader-mock-exports]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-mock-exports#readme
 [esm-loader-svelte]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-svelte#readme

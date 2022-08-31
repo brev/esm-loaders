@@ -73,18 +73,13 @@ provide a bare-bones default config which will be used instead.
 
 # Related
 
-- [esm-loader-import-relative-add-extension][esm-loader-import-relative-add-extension]:
-  Typescript usually generates `.js` files, so relative imports are suggested
-  to have no file extension. But in our case, since we're transpiling
-  on-the-fly, these extensionless imports leave Node.js confused. Use this
-  loader to add `.ts` extensions to any relative imports which are missing
-  them, allowing Node.js to resolve and load the files.
+- [esm-loader-import-relative-extension][esm-loader-import-relative-extension]
 
 # License
 
 [MIT][mit-license]
 
-[esm-loader-import-relative-add-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-add-extension#readme
+[esm-loader-import-relative-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-extension#readme
 [mit-license]: https://mit-license.org/
 [node-esm-loader]: https://github.com/sebamarynissen/node-esm-loader#readme
 [node-loaders]: https://nodejs.org/api/esm.html#loaders
