@@ -4,7 +4,7 @@ type Options = {
   parentURL: string
   url: string
   debug?: boolean
-  meta?: Record<string, any> // eslint-disable-line @typescript-eslint/no-explicit-any
+  meta?: Record<string, unknown>
 }
 
 const NAME = 'esm-loader-import-meta-custom'
