@@ -16,7 +16,7 @@ We'll take some production code which accesses a live filesystem:
 
 ```js
 // filesystem.js
-import { readdirSync } from 'fs'
+import { readdirSync } from 'node:fs'
 
 export const getDir = () => {
   return readdirSync('.')
@@ -46,7 +46,7 @@ npm install --save-dev esm-loader-mock-exports
 
 ```js
 // app.test.js
-import assert from 'assert'
+import assert from 'node:assert'
 import { getFirst } from './app.js'
 import { _MOCK } from './filesystem.js'
 

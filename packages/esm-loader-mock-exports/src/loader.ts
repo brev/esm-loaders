@@ -1,8 +1,8 @@
 import type { ESTree } from 'meriyah'
 
-import { dirname } from 'path'
+import { dirname } from 'node:path'
 import esquery from 'esquery'
-import { fileURLToPath } from 'url'
+import { fileURLToPath } from 'node:url'
 import { generate } from 'astring'
 import {
   getExports,
@@ -86,13 +86,15 @@ export default {
 
     // hoist and rewrite exports with mocking
     for (let nodeIndex = 0; nodeIndex < ast.body.length; nodeIndex++) {
-      const node: Record<string, any> = ast.body[nodeIndex]
+      const node: ESTree.Node = ast.body[nodeIndex]
 
       if (!exports.includes(node)) continue
 
       // change 'const' exports to 'let' so bindings can be redeclared/mocked
-      if (node.declaration && node.declaration.kind === 'const')
-        node.declaration.kind = 'let'
+      if ('declaration' in node && node.declaration) {
+        if ('kind' in node.declaration && node.declaration.kind === 'const')
+          node.declaration.kind = 'let'
+      }
 
       // x1.[1,2]. Hoist and rewrite 'export var name ...' style
       // x3. Hoist and rewrite destructured 'export var { name } ...' style
@@ -108,7 +110,12 @@ export default {
         } = declarator
         let renaming = false
         // hoist
-        if (type === 'ObjectPattern') {
+        if (
+          type === 'ObjectPattern' &&
+          'declaration' in node &&
+          node.declaration &&
+          'declarations' in node.declaration
+        ) {
           // ... Destructuring form: export var { name } = orig; (#1)
           for (
             let propertyIndex = 0;
@@ -175,7 +182,7 @@ export default {
           `let ${name} = null`
         ) as ESTree.VariableDeclaration
         rewrite.declarations[0].init = hoistExp.left
-        node.declaration = rewrite
+        if ('declaration' in node) node.declaration = rewrite
       }
 
       // x2. hoist and rewrite object 'export { name (as ...) }' style
@@ -224,14 +231,18 @@ export default {
             specifiers: [],
           })
           nodeIndex = insert(nodeIndex, reexport)
-          node.specifiers.splice(node.specifiers.indexOf(specifier), 1)
-          if (!node.specifiers.length) nodeIndex = remove(nodeIndex)
+          if ('specifiers' in node) {
+            node.specifiers.splice(node.specifiers.indexOf(specifier), 1)
+            if (!node.specifiers.length) nodeIndex = remove(nodeIndex)
+          }
         }
       }
 
       // x4.[1-3]. Hoist and rewrite default 'export default ...' style
       if (node.type === 'ExportDefaultDeclaration') {
-        let name = `__MOCK_default_${node.declaration.name}` // .type=Identifier
+        let name = `__MOCK_default_${
+          'name' in node.declaration && node.declaration.name
+        }` // .type=Identifier
         if (
           node.declaration.type === 'ClassDeclaration' ||
           node.declaration.type === 'FunctionDeclaration'
@@ -257,8 +268,11 @@ export default {
         const reExport = parseBlock(
           `export { ${name} as default }`
         ) as ESTree.ExportNamedDeclaration
+        // @ts-ignore
         node.type = 'ExportNamedDeclaration'
+        // @ts-ignore
         node.declaration = null
+        // @ts-ignore
         node.specifiers = reExport.specifiers
       }
 
@@ -274,7 +288,7 @@ export default {
           specifierIndex++
         ) {
           const specifier = node.specifiers[specifierIndex]
-          const names: Record<string, any> = {
+          const names: Record<string, string | boolean> = {
             export: specifier.exported.name,
             local: specifier.local.name,
           }
@@ -296,7 +310,7 @@ export default {
           // default alias
           if (names.default && !names.renamed) {
             const alias = parseDefaultSet(
-              names.cacheKey
+              names.cacheKey as string
             ) as ESTree.ExpressionStatement
             nodeIndex = insert(nodeIndex, alias)
           }
@@ -324,7 +338,10 @@ export default {
           }) as ESTree.ImportDeclaration
           nodeIndex = insert(nodeIndex, reimport)
           // hoist
-          const hoist = parseCacheSet(names.cacheKey, names.cacheValue)
+          const hoist = parseCacheSet(
+            names.cacheKey as string,
+            names.cacheValue
+          )
           nodeIndex = insert(nodeIndex, hoist)
           // redeclare
           const hoistExp = hoist.expression as ESTree.AssignmentExpression
@@ -344,7 +361,7 @@ export default {
           else if (names.default)
             rewrite.specifiers[0].local = klona({
               ...rewrite.specifiers[0].exported,
-              name: names.mock,
+              name: names.mock as string,
             })
           nodeIndex = insert(nodeIndex, rewrite)
           node.specifiers.splice(specifierIndex, 1)

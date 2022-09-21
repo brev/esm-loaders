@@ -1,7 +1,7 @@
 import esquery from 'esquery'
 import { ESTree, parse } from 'meriyah'
-import { promises as fs } from 'fs'
-import { resolve } from 'path'
+import { promises as fs } from 'node:fs'
+import { resolve } from 'node:path'
 
 // settings
 
@@ -27,13 +27,16 @@ export const loadStub = async (modulePath: string, file: string) => {
 export const parseBlock = (block: string) =>
   parse(`${block};`, parseOpts).body[0]
 
-export const parseCacheSet = (key: string, value: any) => {
+export const parseCacheSet = (
+  key: string,
+  value: ESTree.Node | string | boolean | null
+) => {
   if (typeof value === 'object') {
     const ast = parseBlock(
       `__MOCK.CACHE['${key}'] = null`
     ) as ESTree.ExpressionStatement
     const expression = ast.expression as ESTree.AssignmentExpression
-    expression.right = value
+    expression.right = value as ESTree.Expression
     return ast
   } else {
     return parseBlock(
