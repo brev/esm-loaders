@@ -26,7 +26,7 @@ npm install --save-dev esm-loader-import-alias node-esm-loader
 
 ```js
 // .loaderrc.js
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 export default {
   loaders: [

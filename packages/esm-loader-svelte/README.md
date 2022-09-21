@@ -92,7 +92,7 @@ Supply preprocessing options via `node-esm-loader` config file `.loaderrc.js`:
 ```js
 // .loaderrc.js
 import preprocess from 'svelte-preprocess'
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 export default {
   loaders: [
@@ -121,7 +121,7 @@ found therein:
 ```js
 // svelte.config.js
 import preprocess from 'svelte-preprocess'
-import { resolve } from 'path'
+import { resolve } from 'node:path'
 
 export default {
   kit: ...,

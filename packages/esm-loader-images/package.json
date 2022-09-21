@@ -5,6 +5,7 @@
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-images#readme",
   "license": "MIT",
   "main": "./dist/index.js",
+  "packageManager": "pnpm@7",
   "type": "module",
   "types": "./dist/index.d.ts",
   "author": {
@@ -50,12 +51,13 @@
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",
     "bin:prettier": "prettier --ignore-path .gitignore .",
+    "bin:tsc": "tsc --noEmit",
     "bin:uvu": "NODE_OPTIONS=\"--loader ./dist/index.js\" uvu test .test.js",
     "build": "tsc",
     "build:watch": "run-s 'build --watch'",
     "clean": "rimraf coverage/ dist/",
     "format": "run-s 'bin:prettier --write'",
-    "lint": "run-s 'bin:prettier --check' bin:eslint",
+    "lint": "run-s 'bin:prettier --check' bin:eslint bin:tsc",
     "test": "run-s build bin:uvu",
     "test:cover": "c8 run-s test"
   }

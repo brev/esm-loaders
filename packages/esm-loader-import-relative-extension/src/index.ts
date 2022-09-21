@@ -2,8 +2,8 @@ import type { ESTree } from 'meriyah'
 
 import createLoader from 'create-esm-loader'
 import esquery from 'esquery'
-import { extname } from 'path'
-import { fileURLToPath } from 'url'
+import { extname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { generate } from 'astring'
 import { parse } from 'meriyah'
 

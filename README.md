@@ -1,4 +1,4 @@
-# ESModule Loaders
+# Monorepo (esm-loaders)
 
 This is a Monorepo for my ESModule Loaders.
 
@@ -16,18 +16,18 @@ ESModule Loaders are in the [`packages/`][packages] directory:
 - [esm-loader-svelte][esm-loader-svelte]
 - [esm-loader-typescript][esm-loader-typescript]
 
-# Dependencies
-
-- git
-- node + npm
-
-# Install
+# Develop
 
 ```sh
-npm install -g pnpm
 git clone https://github.com/brev/esm-loaders.git
 cd esm-loaders/
-pnpm install
+npm install -g pnpm
+pnpm -r install
+pnpm -r clean
+pnpm -r format
+pnpm -r lint
+pnpm -r test:cover
+pnpm -r build
 ```
 
 # License

@@ -5,9 +5,9 @@ import type {
 
 import { compile, preprocess as preprocessor } from 'svelte/compiler'
 import createLoader from 'create-esm-loader'
-import { cwd } from 'process'
-import { fileURLToPath } from 'url'
-import { parse } from 'path'
+import { cwd } from 'node:process'
+import { fileURLToPath } from 'node:url'
+import { parse } from 'node:path'
 import semver from 'semver'
 
 type Options = {
