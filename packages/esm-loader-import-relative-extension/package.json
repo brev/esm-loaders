@@ -57,13 +57,13 @@
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",
     "bin:prettier": "prettier --ignore-path .gitignore .",
-    "bin:tsc": "tsc --noEmit",
+    "bin:tsc": "tsc",
     "bin:uvu": "NODE_OPTIONS=\"--loader node-esm-loader\" uvu test .test.js",
-    "build": "tsc",
+    "build": "run-s bin:tsc",
     "build:watch": "run-s 'build --watch'",
     "clean": "rimraf coverage/ dist/",
     "format": "run-s 'bin:prettier --write'",
-    "lint": "run-s 'bin:prettier --check' bin:eslint bin:tsc",
+    "lint": "run-s 'bin:prettier --check' bin:eslint 'bin:tsc --noEmit'",
     "test": "run-s build bin:uvu",
     "test:cover": "c8 run-s test"
   }
