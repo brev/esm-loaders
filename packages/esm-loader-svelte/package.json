@@ -19,15 +19,15 @@
     "create-esm-loader": "^0.1.2",
     "npm-run-all": "^4.1.5",
     "semver": "^7.3.7",
-    "svelte": "^3.49.0"
+    "svelte": "^3.50.1"
   },
   "devDependencies": {
     "@testing-library/svelte": "^3.2.1",
-    "@types/node": "^18.7.14",
-    "@typescript-eslint/eslint-plugin": "^5.36.1",
-    "@typescript-eslint/parser": "^5.36.1",
+    "@types/node": "^18.7.18",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
     "c8": "^7.12.0",
-    "eslint": "^8.23.0",
+    "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
     "global-jsdom": "^8.5.0",
     "jsdom": "^20.0.0",
@@ -38,7 +38,7 @@
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "svelte-preprocess": "^4.10.7",
-    "typescript": "^4.8.2",
+    "typescript": "^4.8.3",
     "uvu": "^0.5.6"
   },
   "files": [
