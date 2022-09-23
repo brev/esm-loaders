@@ -50,6 +50,26 @@ NODE_OPTIONS="--loader node-esm-loader" node index.ts
 
 ### Options
 
+#### Config
+
+You may specify a custom TypeScript config filename to use:
+
+```js
+// .loaderrc.js
+export default {
+  loaders: [
+    {
+      loader: 'esm-loader-typescript',
+      options: {
+        config: 'tsconfig-custom.json',
+      },
+    },
+  ],
+}
+```
+
+Otherwise, if a `tsconfig.json` file is found, it will be loaded and used.
+
 #### Debug
 
 ```js
@@ -65,11 +85,6 @@ export default {
   ],
 }
 ```
-
-# Config
-
-If a `tsconfig.json` file is found, it will be loaded and used. Otherwise, we
-provide a bare-bones default config which will be used instead.
 
 # Related
 

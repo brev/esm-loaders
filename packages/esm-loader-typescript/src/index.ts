@@ -1,22 +1,24 @@
 // https://github.com/sebamarynissen/create-esm-loader#1-compile-typescript-on-the-fly
 
+import type { CompilerOptions } from 'typescript'
+
 import createLoader from 'create-esm-loader'
-import { load as tsconfigLoad } from 'tsconfig'
+import { cwd } from 'node:process'
+import { dirname } from 'node:path'
 import semver from 'semver'
 import ts from 'typescript'
 
 type Options = {
   parentURL: string
   url: string
+  config?: string
   debug?: boolean
 }
 
 const NAME = 'esm-loader-typescript'
 const EXT = '.ts'
-const CONFIG = (await tsconfigLoad(import.meta.url)).config
-CONFIG.compilerOptions.inlineSourceMap = true
-if (!CONFIG.compilerOptions.module)
-  CONFIG.compilerOptions.module = ts.ModuleKind.ESNext
+
+let tsConfig: CompilerOptions
 
 // create-esm-loader config
 
@@ -45,20 +47,40 @@ const config = {
     }
   },
 
-  transform: (source: Buffer, options: Options) => {
-    const { debug, url } = options
-    if (url.endsWith(EXT)) {
-      if (debug) console.log(`[${NAME}] transform: ${url}`)
+  transform: async (source: Buffer, options: Options) => {
+    const { debug, config = 'tsconfig.json', url } = options
 
-      const { outputText } = ts.transpileModule(String(source), {
-        ...CONFIG,
-        fileName: url,
-      })
+    if (!url.endsWith(EXT)) return
+    if (!tsConfig) {
+      const configFileName = ts.findConfigFile(cwd(), ts.sys.fileExists, config)
+      const configFile = ts.readConfigFile(
+        configFileName as string,
+        ts.sys.readFile
+      )
+      const compilerOptions = ts.parseJsonConfigFileContent(
+        configFile.config,
+        ts.sys,
+        dirname(configFileName as string)
+      )
 
-      return { source: outputText }
+      tsConfig = compilerOptions.options
+      tsConfig.inlineSourceMap = true
+      if (!tsConfig.module) tsConfig.module = ts.ModuleKind.ESNext
+
+      if (debug) console.log(`[${NAME}] using tsconfig: ${configFileName}`)
     }
+
+    if (debug) console.log(`[${NAME}] transform: ${url}`)
+
+    const { outputText } = ts.transpileModule(String(source), {
+      compilerOptions: tsConfig,
+      fileName: url,
+    })
+
+    return { source: outputText }
   },
 }
+
 export default config
 
 // node loader
