@@ -143,6 +143,8 @@ export default {
 
 This loader CANNOT handle the following situations, and will skip them:
 
+- Node.js built-in modules (already pre-loaded and not mockable).
+
 - Bulk exports from other modules (You may be able to mock a parent module at a
   higher level to accomplish the same thing):
 
