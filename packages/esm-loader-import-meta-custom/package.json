@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-import-meta-custom",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chainable ESModule Loader to stub custom import.meta.* properties",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme",
   "license": "MIT",

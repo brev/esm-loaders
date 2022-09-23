@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-images",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Chainable ESModule Loader for Images",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-images#readme",
   "license": "MIT",

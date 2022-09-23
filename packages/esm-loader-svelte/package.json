@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-svelte",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Chainable ESModule Loader for Svelte and SvelteKit",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-svelte#readme",
   "license": "MIT",

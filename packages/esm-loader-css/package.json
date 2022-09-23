@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-css",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Chainable ESModule Loader for CSS and Preprocessors",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-css#readme",
   "license": "MIT",
