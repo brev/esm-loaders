@@ -28,6 +28,7 @@
     "c8": "^7.12.0",
     "eslint": "^8.24.0",
     "eslint-config-prettier": "^8.5.0",
+    "node-esm-loader": "^0.0.3",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "uvu": "^0.5.6"
@@ -51,13 +52,17 @@
   "scripts": {
     "bin:eslint": "eslint --ignore-path .gitignore .",
     "bin:prettier": "prettier --ignore-path .gitignore .",
+    "bin:prettier:check": "run-s 'bin:prettier --check'",
+    "bin:prettier:write": "run-s 'bin:prettier --write'",
     "bin:tsc": "tsc",
-    "bin:uvu": "NODE_OPTIONS=\"--loader ./dist/index.js\" uvu test .test.js",
+    "bin:tsc:check": "run-s 'bin:tsc --noEmit'",
+    "bin:tsc:checktest": "run-s 'bin:tsc --noEmit --project test/tsconfig.json'",
+    "bin:uvu": "NODE_OPTIONS=\"--loader node-esm-loader\" uvu test .test.js",
     "build": "run-s bin:tsc",
     "build:watch": "run-s 'build --watch'",
     "clean": "rimraf coverage/ dist/",
-    "format": "run-s 'bin:prettier --write'",
-    "lint": "run-s 'bin:prettier --check' bin:eslint 'bin:tsc --noEmit'",
+    "format": "run-s bin:prettier:write",
+    "lint": "run-s bin:prettier:check bin:eslint bin:tsc:check bin:tsc:checktest",
     "test": "run-s build bin:uvu",
     "test:cover": "c8 run-s test"
   }
