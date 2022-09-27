@@ -59,7 +59,7 @@
     "bin:tsc:checktest": "run-s 'bin:tsc --noEmit --project test/tsconfig.json'",
     "bin:uvu": "NODE_OPTIONS=\"--loader node-esm-loader\" uvu test .test.js",
     "build": "run-s bin:tsc",
-    "build:watch": "run-s 'build --watch'",
+    "build:watch": "run-s 'bin:tsc --watch'",
     "clean": "rimraf coverage/ dist/",
     "format": "run-s bin:prettier:write",
     "lint": "run-s bin:prettier:check bin:eslint bin:tsc:check bin:tsc:checktest",

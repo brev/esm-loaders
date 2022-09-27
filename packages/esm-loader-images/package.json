@@ -54,7 +54,7 @@
     "bin:tsc": "tsc",
     "bin:uvu": "NODE_OPTIONS=\"--loader ./dist/index.js\" uvu test .test.js",
     "build": "run-s bin:tsc",
-    "build:watch": "run-s 'build --watch'",
+    "build:watch": "run-s 'bin:tsc --watch'",
     "clean": "rimraf coverage/ dist/",
     "format": "run-s 'bin:prettier --write'",
     "lint": "run-s 'bin:prettier --check' bin:eslint 'bin:tsc --noEmit'",
