@@ -5,7 +5,6 @@
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme",
   "license": "MIT",
   "main": "./dist/index.js",
-  "packageManager": "pnpm@7",
   "type": "module",
   "types": "./dist/index.d.ts",
   "author": {
