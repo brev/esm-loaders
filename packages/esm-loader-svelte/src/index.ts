@@ -31,6 +31,8 @@ try {
 const config = {
   resolve: (specifier: string, options: Options) => {
     const { debug, parentURL } = options
+    // remove query from specifier
+    specifier = specifier.split('?').shift()
     if (specifier.endsWith(EXT)) {
       if (debug) console.log(`[${NAME}] resolve: ${specifier}`)
       const url = new URL(specifier, parentURL).href
