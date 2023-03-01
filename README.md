@@ -41,10 +41,10 @@ pnpm -r build
 [esm-loader-import-meta-custom]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-meta-custom#readme
 [esm-loader-import-relative-extension]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-relative-extension#readme
 [esm-loader-json]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-json#readme
-[esm-loader-yaml]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-yaml#readme
 [esm-loader-mock-exports]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-mock-exports#readme
 [esm-loader-svelte]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-svelte#readme
 [esm-loader-typescript]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-typescript#readme
+[esm-loader-yaml]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-yaml#readme
 [mit-license]: https://mit-license.org/
 [packages]: https://github.com/brev/esm-loaders/tree/main/packages
 
