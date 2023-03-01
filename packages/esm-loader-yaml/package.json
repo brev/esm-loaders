@@ -1,0 +1,65 @@
+{
+  "name": "esm-loader-yaml",
+  "version": "1.0.0",
+  "description": "Chainable ESModule Loader for importing YAML files as modules",
+  "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-yaml#readme",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "author": {
+    "name": "Larry Maccherone",
+    "url": "https://github.com/lmacherone"
+  },
+  "bugs": {
+    "url": "https://github.com/brev/esm-loaders/issues"
+  },
+  "dependencies": {
+    "create-esm-loader": "^0.1.2",
+    "js-yaml": "^4.1.0",
+    "npm-run-all": "^4.1.5",
+    "semver": "^7.3.7"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.19",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "c8": "^7.12.0",
+    "eslint": "^8.24.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "typescript": "^4.8.3",
+    "uvu": "^0.5.6"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "keywords": [
+    "esm",
+    "esmodule",
+    "loader",
+    "chainable",
+    "import",
+    "yaml",
+    "module"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/brev/esm-loaders.git",
+    "directory": "packages/esm-loader-yaml"
+  },
+  "scripts": {
+    "bin:eslint": "eslint --ignore-path .gitignore .",
+    "bin:prettier": "prettier --ignore-path .gitignore .",
+    "bin:tsc": "tsc",
+    "bin:uvu": "NODE_OPTIONS=\"--loader ./dist/index.js\" uvu test .test.js",
+    "build": "run-s bin:tsc",
+    "build:watch": "run-s 'bin:tsc --watch'",
+    "clean": "rimraf coverage/ dist/",
+    "format": "run-s 'bin:prettier --write'",
+    "lint": "run-s 'bin:prettier --check' bin:eslint 'bin:tsc --noEmit'",
+    "test": "run-s build bin:uvu",
+    "test:cover": "c8 run-s test"
+  }
+}
