@@ -1,4 +1,5 @@
 import createLoader from 'create-esm-loader'
+import { extname } from 'node:path'
 import semver from 'semver'
 import yaml from 'js-yaml'
 
@@ -16,31 +17,41 @@ const EXT = '.yaml'
 const config = {
   resolve: (specifier: string, options: Options) => {
     const { debug, parentURL } = options
-    if (!specifier.endsWith(EXT)) return undefined
+    const { href, pathname } = new URL(specifier, parentURL)
+
+    if (extname(pathname) != EXT) return undefined
     if (debug) console.log(`[${NAME}] resolve: ${specifier}`)
-    const url = new URL(specifier, parentURL).href
+
     return {
       format: semver.gte(process.versions.node, '16.12.0')
         ? 'module' // node>=16.12
         : undefined,
-      url,
+      url: href,
     }
   },
 
   format: (url: string, options: Options) => {
     const { debug } = options
+    const { pathname } = new URL(url)
+
     if (semver.gte(process.versions.node, '16.12.0')) return undefined
+
     // node<16.12
-    if (!url.endsWith(EXT)) return undefined
+    if (extname(pathname) != EXT) return undefined
     if (debug) console.log(`[${NAME}] format: ${url}`)
+
     return { format: 'module' }
   },
 
   transform: (source: Buffer, options: Options) => {
     const { debug, url } = options
-    if (!url.endsWith(EXT)) return undefined
+    const { pathname } = new URL(url)
+
+    if (extname(pathname) != EXT) return undefined
     if (debug) console.log(`[${NAME}] transform: ${url}`)
-    const result = `export default ${JSON.stringify(yaml.load(source))}`
+
+    const data = yaml.load(source)
+    const result = `export default ${JSON.stringify(data)}`
     return { source: result }
   },
 }

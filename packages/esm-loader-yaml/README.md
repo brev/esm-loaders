@@ -15,7 +15,7 @@ npm install --save-dev esm-loader-yaml
 You may have code which imports `.yaml` files:
 
 ```yaml
-// data.yaml
+# data.yaml
 - name: Vito
 ```
 
@@ -73,7 +73,6 @@ export default {
 
 [MIT][mit-license]
 
-[import-assert]: https://nodejs.org/api/esm.html#import-assertions
 [mit-license]: https://mit-license.org/
 [node-esm-loader]: https://github.com/sebamarynissen/node-esm-loader#readme
 [node-loaders]: https://nodejs.org/api/esm.html#loaders

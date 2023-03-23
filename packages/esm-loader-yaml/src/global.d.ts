@@ -1,3 +1,3 @@
 declare module 'create-esm-loader'
-declare module 'semver'
 declare module 'js-yaml'
+declare module 'semver'
