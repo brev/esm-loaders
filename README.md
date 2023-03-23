@@ -15,6 +15,7 @@ ESModule Loaders are in the [`packages/`][packages] directory:
 - [esm-loader-mock-exports][esm-loader-mock-exports]
 - [esm-loader-svelte][esm-loader-svelte]
 - [esm-loader-typescript][esm-loader-typescript]
+- [esm-loader-yaml][esm-loader-yaml]
 
 # Develop
 
@@ -43,6 +44,7 @@ pnpm -r build
 [esm-loader-mock-exports]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-mock-exports#readme
 [esm-loader-svelte]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-svelte#readme
 [esm-loader-typescript]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-typescript#readme
+[esm-loader-yaml]: https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-yaml#readme
 [mit-license]: https://mit-license.org/
 [packages]: https://github.com/brev/esm-loaders/tree/main/packages
 
