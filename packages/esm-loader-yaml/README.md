@@ -73,6 +73,10 @@ export default {
 
 [MIT][mit-license]
 
+# Author
+
+Larry Maccherone @lmaccherone
+
 [mit-license]: https://mit-license.org/
 [node-esm-loader]: https://github.com/sebamarynissen/node-esm-loader#readme
 [node-loaders]: https://nodejs.org/api/esm.html#loaders
