@@ -1,5 +1,6 @@
 {
   "all": true,
+  "exclude": ["**/*.d.ts", "dist/stubs/"],
   "reporter": ["text", "html"],
-  "src": "src/"
+  "src": "dist/"
 }

@@ -1,5 +1,5 @@
 {
   "all": true,
   "reporter": ["text", "html"],
-  "src": "src/"
+  "src": "dist/"
 }

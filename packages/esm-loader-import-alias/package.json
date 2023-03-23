@@ -1,6 +1,6 @@
 {
   "name": "esm-loader-import-alias",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Chainable ESModule Loader for import path aliases",
   "homepage": "https://github.com/brev/esm-loaders/tree/main/packages/esm-loader-import-alias#readme",
   "license": "MIT",
@@ -15,23 +15,23 @@
     "url": "https://github.com/brev/esm-loaders/issues"
   },
   "dependencies": {
-    "astring": "^1.8.3",
-    "create-esm-loader": "^0.1.2",
-    "esquery": "^1.4.0",
-    "meriyah": "^4.3.1",
+    "astring": "^1.8.4",
+    "create-esm-loader": "^0.2.3",
+    "esquery": "^1.5.0",
+    "meriyah": "^4.3.5",
     "npm-run-all": "^4.1.5"
   },
   "devDependencies": {
-    "@types/node": "^18.7.19",
-    "@typescript-eslint/eslint-plugin": "^5.38.0",
-    "@typescript-eslint/parser": "^5.38.0",
-    "c8": "^7.12.0",
-    "eslint": "^8.24.0",
-    "eslint-config-prettier": "^8.5.0",
-    "node-esm-loader": "^0.0.3",
-    "prettier": "^2.7.1",
-    "rimraf": "^3.0.2",
-    "typescript": "^4.8.3",
+    "@types/node": "^18.15.5",
+    "@typescript-eslint/eslint-plugin": "^5.56.0",
+    "@typescript-eslint/parser": "^5.56.0",
+    "c8": "^7.13.0",
+    "eslint": "^8.36.0",
+    "eslint-config-prettier": "^8.8.0",
+    "node-esm-loader": "^0.2.3",
+    "prettier": "^2.8.6",
+    "rimraf": "^4.4.1",
+    "typescript": "^5.0.2",
     "uvu": "^0.5.6"
   },
   "files": [
