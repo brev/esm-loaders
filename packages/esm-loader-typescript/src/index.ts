@@ -4,7 +4,7 @@ import type { CompilerOptions } from 'typescript'
 
 import createLoader from 'create-esm-loader'
 import { cwd } from 'node:process'
-import { dirname } from 'node:path'
+import { dirname, extname } from 'node:path'
 import semver from 'semver'
 import ts from 'typescript'
 
@@ -25,23 +25,24 @@ let tsConfig: CompilerOptions
 const config = {
   resolve: (specifier: string, options: Options) => {
     const { debug, parentURL } = options
-    if (specifier.endsWith(EXT)) {
+    const { href, pathname } = new URL(specifier, parentURL)
+    if (extname(pathname) === EXT) {
       if (debug) console.log(`[${NAME}] resolve: ${specifier}`)
-      const url = new URL(specifier, parentURL).href
       return {
         format: semver.gte(process.versions.node, '16.12.0')
           ? 'module' // node>=16.12 only
           : undefined,
-        url,
+        url: href,
       }
     }
   },
 
   format: (url: string, options: Options) => {
     const { debug } = options
+    const { pathname } = new URL(url)
     if (semver.gte(process.versions.node, '16.12.0')) return undefined
     // node<16.12
-    if (url.endsWith(EXT)) {
+    if (extname(pathname) === EXT) {
       if (debug) console.log(`[${NAME}] format: ${url}`)
       return { format: 'module' }
     }
@@ -49,8 +50,9 @@ const config = {
 
   transform: async (source: Buffer, options: Options) => {
     const { debug, config = 'tsconfig.json', url } = options
+    const { pathname } = new URL(url)
 
-    if (!url.endsWith(EXT)) return
+    if (extname(pathname) != EXT) return
     if (!tsConfig) {
       const configFileName = ts.findConfigFile(cwd(), ts.sys.fileExists, config)
       const configFile = ts.readConfigFile(
@@ -76,7 +78,6 @@ const config = {
       compilerOptions: tsConfig,
       fileName: url,
     })
-
     return { source: outputText }
   },
 }

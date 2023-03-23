@@ -1,6 +1,7 @@
 import type { ESTree } from 'meriyah'
+import type { Node } from 'estree'
 
-import { dirname } from 'node:path'
+import { dirname, extname } from 'node:path'
 import esquery from 'esquery'
 import { fileURLToPath } from 'node:url'
 import { generate } from 'astring'
@@ -50,8 +51,13 @@ console.log(
 export default {
   transform(source: Buffer, options: Options) {
     const { debug, includes, url } = options
+    const { pathname } = new URL(url)
 
-    if (url.endsWith('.json') || !source || String(source).match(/_MOCK/))
+    if (
+      extname(pathname) === '.json' ||
+      !source ||
+      String(source).match(/_MOCK/)
+    )
       return undefined
     if (includes && !includes.some((rx: RegExp) => rx.test(url)))
       return undefined
@@ -381,16 +387,18 @@ export default {
     exports = getExports(ast) // update
 
     // rename all old non-export var names to their new mocked cached names
-    walk(ast, {
+    walk(ast as Node, {
       enter(node, parent) {
         if (exports.includes(node)) this.skip()
         if (
+          'name' in node &&
           renames.has(node.name) &&
           node.type === 'Identifier' &&
+          parent &&
           !(parent.type === 'MemberExpression' && parent.property === node)
         ) {
           const original = klona(node)
-          node.name = renames.get(node.name) // rename
+          node.name = renames.get(node.name) as string // rename
           if (parent.type === 'ImportSpecifier') parent.imported = original
         }
       },
