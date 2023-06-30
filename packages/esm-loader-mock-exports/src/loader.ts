@@ -13,16 +13,9 @@ import {
   parseDefaultSet,
   parseOpts,
 } from './utils.js'
-import isVarName from 'is-valid-var-name'
 import { klona } from 'klona/json'
 import { parse } from 'meriyah'
 import { walk } from 'estree-walker'
-
-declare global {
-  var __MOCK_internal_isVarName: (name: string) => boolean // eslint-disable-line no-var
-}
-if (!globalThis.__MOCK_internal_isVarName)
-  globalThis.__MOCK_internal_isVarName = isVarName
 
 type Options = {
   parentUrl: string
