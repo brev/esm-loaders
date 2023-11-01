@@ -14,7 +14,7 @@ Supported image filename extensions:
 API will likely change. This may be helpful for development and testing,
 but should not be used in production.
 
-# Usage
+## Usage
 
 ```sh
 npm install --save-dev esm-loader-images
@@ -37,13 +37,21 @@ console.log(image)
 // "<svg><circle ... /></svg>"
 ```
 
-## Standalone
+### Standalone
 
 ```sh
+# node >= 20.7
+cat << EOF > ./register.js
+import { register } from 'node:module'
+register('esm-loader-images', import.meta.url)
+EOF
+NODE_OPTIONS="--import ./register.js" node index.js
+
+# node < 20.7
 NODE_OPTIONS="--loader esm-loader-images" node index.js
 ```
 
-## Chainable
+### Chainable
 
 This loader can be configured, and chained with other loaders, using
 [node-esm-loader][node-esm-loader].
@@ -60,12 +68,16 @@ export default {
 ```
 
 ```sh
+# node >= 20.7
+NODE_OPTIONS="--import node-esm-loader/register" node index.js
+
+# node < 20.7
 NODE_OPTIONS="--loader node-esm-loader" node index.js
 ```
 
-### Options
+#### Options
 
-#### Debug
+##### Debug
 
 ```js
 // .loaderrc.js
@@ -81,7 +93,7 @@ export default {
 }
 ```
 
-# License
+## License
 
 [MIT][mit-license]
 

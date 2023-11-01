@@ -6,7 +6,7 @@
 API will likely change. This may be helpful for development and testing,
 but should not be used in production.
 
-# Usage
+## Usage
 
 Some frameworks will allow aliases in import paths (`$lib`). This loader helps
 Node.js handle these aliases:
@@ -15,7 +15,7 @@ Node.js handle these aliases:
 import { tool } from '$lib/utils.js'
 ```
 
-## Chainable
+### Chainable
 
 This loader can be configured, and chained with other loaders, using
 [node-esm-loader][node-esm-loader].
@@ -49,16 +49,20 @@ import Component from '$lib/Component.js'
 ```
 
 ```sh
+# node >= 20.7
+NODE_OPTIONS="--import node-esm-loader/register" node index.js
+
+# node < 20.7
 NODE_OPTIONS="--loader node-esm-loader" node index.js
 ```
 
-### Options
+#### Options
 
-#### Aliases
+##### Aliases
 
 See example above.
 
-#### Debug
+##### Debug
 
 ```js
 // .loaderrc.js
@@ -74,14 +78,14 @@ export default {
 }
 ```
 
-### Ordering
+#### Ordering
 
 In your loader chain:
 
 - This loader should come **before**:
   - [esm-loader-import-relative-extension][esm-loader-import-relative-extension]
 
-# License
+## License
 
 [MIT][mit-license]
 

@@ -10,7 +10,7 @@ ESModules (`import`), and does not work for CommonJS (`require`) modules.
 likely change. This may be helpful for development and testing, but should not
 be used in production.
 
-# Usage
+## Usage
 
 We'll take some production code which accesses a live filesystem:
 
@@ -65,15 +65,23 @@ named exports, we just use the `default` keyword:
 _MOCK('default', () => 'hello world')
 ```
 
-## Standalone
+### Standalone
 
 By default, all loaded modules will be instrumented with mocking abilities:
 
 ```sh
+# node >= 20.7
+cat << EOF > ./register.js
+import { register } from 'node:module'
+register('esm-loader-mock-exports', import.meta.url)
+EOF
+NODE_OPTIONS="--import ./register.js" node app.test.js
+
+# node < 20.7
 NODE_OPTIONS="--loader esm-loader-mock-exports" node app.test.js
 ```
 
-## Chainable
+### Chainable
 
 This loader can be configured, and chained with other loaders, using
 [node-esm-loader][node-esm-loader].
@@ -93,12 +101,16 @@ export default {
 ```
 
 ```sh
+# node >= 20.7
+NODE_OPTIONS="--import node-esm-loader/register" node app.test.js
+
+# node < 20.7
 NODE_OPTIONS="--loader node-esm-loader" node app.test.js
 ```
 
-### Options
+#### Options
 
-#### Includes
+##### Includes
 
 To only instrument mocks on certain specific modules, you can pass a list of
 regular expressions in an `includes` option. This can increase speed and
@@ -123,7 +135,7 @@ export default {
 }
 ```
 
-#### Debug
+##### Debug
 
 ```js
 // .loaderrc.js
@@ -139,7 +151,7 @@ export default {
 }
 ```
 
-# Unsupported
+## Unsupported
 
 This loader CANNOT handle the following situations, and will skip them:
 
@@ -164,7 +176,7 @@ This loader CANNOT handle the following situations, and will skip them:
   }
   ```
 
-# Security
+## Security
 
 **Warning!** This loader uses `eval` to accomplish adding/clearing mocks.
 Make sure this loader is used under development/test, with code/tests/mocks
@@ -174,7 +186,7 @@ instrumented with mocking abilities.
 This loader will always print a warning about this during startup,
 as a reminder.
 
-# Context
+## Context
 
 There are other ESModule mocking libraries available, but they all have one
 or more of these problems:
@@ -182,11 +194,10 @@ or more of these problems:
 - Cannot be chained with other loaders.
 - Only works for `.js` files, not any others (`.ts`, `.svelte`, etc.)
 
-# License
+## License
 
 [MIT][mit-license]
 
-[export-forms]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export#syntax
 [mit-license]: https://mit-license.org/
 [node-esm-loader]: https://github.com/sebamarynissen/node-esm-loader#readme
 [node-loaders]: https://nodejs.org/api/esm.html#loaders

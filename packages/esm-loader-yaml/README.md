@@ -6,7 +6,7 @@
 whose API will likely change. This code may be helpful for development and
 testing, but should not be used in production.
 
-# Usage
+## Usage
 
 ```sh
 npm install --save-dev esm-loader-yaml
@@ -15,7 +15,7 @@ npm install --save-dev esm-loader-yaml
 You may have code which imports `.yaml` files:
 
 ```yaml
-# data.yaml
+## data.yaml
 - name: Vito
 ```
 
@@ -25,13 +25,21 @@ import data from './data.yaml'
 console.log(data) // { "name": "Vito" }
 ```
 
-## Standalone
+### Standalone
 
 ```sh
+# node >= 20.7
+cat << EOF > ./register.js
+import { register } from 'node:module'
+register('esm-loader-yaml', import.meta.url)
+EOF
+NODE_OPTIONS="--import ./register.js" node index.js
+
+# node < 20.7
 NODE_OPTIONS="--loader esm-loader-yaml" node index.js
 ```
 
-## Chainable
+### Chainable
 
 This loader can be configured, and chained with other loaders, using
 [node-esm-loader][node-esm-loader].
@@ -48,12 +56,16 @@ export default {
 ```
 
 ```sh
+# node >= 20.7
+NODE_OPTIONS="--import node-esm-loader/register" node index.js
+
+# node < 20.7
 NODE_OPTIONS="--loader node-esm-loader" node index.js
 ```
 
-### Options
+#### Options
 
-#### Debug
+##### Debug
 
 ```js
 // .loaderrc.js
@@ -69,11 +81,11 @@ export default {
 }
 ```
 
-# License
+## License
 
 [MIT][mit-license]
 
-# Author
+## Author
 
 Larry Maccherone [@lmaccherone](https://github.com/lmaccherone)
 
