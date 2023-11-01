@@ -12,7 +12,7 @@ This loader will ignore any valid `import.meta` properties, such as:
 API will likely change. This may be helpful for development and testing,
 but should not be used in production.
 
-# Usage
+## Usage
 
 Some web frameworks will override `import.meta` with custom properties, not
 known to Node.js. Your production web code might contain something like this:
@@ -25,7 +25,7 @@ const dbUrl = import.meta.env.VITE_DATABASE_URL
 If you try testing this web code in isolation under Node.js it will fail, as
 Node does not recoginze `import.meta.env*`.
 
-## Chainable
+### Chainable
 
 This loader can be configured, and chained with other loaders, using
 [node-esm-loader][node-esm-loader].
@@ -53,16 +53,20 @@ export default {
 ```
 
 ```sh
+# node >= 20.7
+NODE_OPTIONS="--import node-esm-loader/register" node index.js
+
+# node < 20.7
 NODE_OPTIONS="--loader node-esm-loader" node index.js
 ```
 
-### Options
+#### Options
 
-#### Meta
+##### Meta
 
 See example above.
 
-#### Debug
+##### Debug
 
 ```js
 // .loaderrc.js
@@ -78,7 +82,7 @@ export default {
 }
 ```
 
-# License
+## License
 
 [MIT][mit-license]
 

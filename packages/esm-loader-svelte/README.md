@@ -8,7 +8,7 @@ transpiling on the fly.
 API will likely change. This may be helpful for development and testing,
 but should not be used in production.
 
-# Usage
+## Usage
 
 ```sh
 npm install --save-dev esm-loader-svelte
@@ -38,13 +38,21 @@ import Component from './Component.svelte'
 // render(Component) to DOM, etc.
 ```
 
-## Standalone
+### Standalone
 
 ```sh
+# node >= 20.7
+cat << EOF > ./register.js
+import { register } from 'node:module'
+register('esm-loader-svelte', import.meta.url)
+EOF
+NODE_OPTIONS="--import ./register.js" node index.js
+
+# node < 20.7
 NODE_OPTIONS="--loader esm-loader-svelte" node index.js
 ```
 
-## Chainable
+### Chainable
 
 This loader can be configured, and chained with other loaders, using
 [node-esm-loader][node-esm-loader].
@@ -61,12 +69,16 @@ export default {
 ```
 
 ```sh
+# node >= 20.7
+NODE_OPTIONS="--import node-esm-loader/register" node index.js
+
+# node < 20.7
 NODE_OPTIONS="--loader node-esm-loader" node index.js
 ```
 
-### Options
+#### Options
 
-#### Debug
+##### Debug
 
 ```js
 // .loaderrc.js
@@ -82,7 +94,7 @@ export default {
 }
 ```
 
-#### Preprocess
+##### Preprocess
 
 Preprocessing options can be supplied, for usage with something like
 SvelteKit's [svelte-preprocess][svelte-preprocess].
@@ -112,7 +124,7 @@ export default {
 }
 ```
 
-# SvelteKit
+## SvelteKit
 
 If `options.preprocess` is NOT found in `.loaderrc.js`, then we will try to
 load a SvelteKit `svelte.config.js` file, and use the `preprocess` settings
@@ -139,12 +151,12 @@ To further support loading SvelteKit, you may be interested in chaining
 [additional loaders][esm-loaders]. If you are testing a SvelteKit app,
 we suggest using [vitest][vitest] instead.
 
-# Caveats
+## Caveats
 
 Svelte does not run some lifecycle events on the server under Node.js:
 `onMount`, `beforeUpdate`, `afterUpdate`.
 
-# License
+## License
 
 [MIT][mit-license]
 
